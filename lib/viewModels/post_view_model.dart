@@ -1,9 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:dio_demo/models/post.dart';
 import 'package:dio_demo/web_service.dart/api_service.dart';
 import 'package:flutter/material.dart';
 
 class PostViewModel extends ChangeNotifier {
-  final ApiService _apiService = ApiService();
+  final ApiService _apiService = ApiService(Dio());
   List<Post> _posts = [];
   bool _loading = false;
   String _error = '';
