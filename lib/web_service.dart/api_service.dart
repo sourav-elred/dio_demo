@@ -1,17 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:retrofit/retrofit.dart';
 import 'package:dio_demo/models/post.dart';
 
-class ApiService {
-  final Dio _dio = Dio();
+part 'api_service.g.dart';
 
-  Future<List<Post>> getPosts() async {
-    try {
-      final response =
-          await _dio.get('https://jsonplaceholder.typicode.com/posts');
-      final List<dynamic> data = response.data;
-      return data.map((json) => Post.fromJson(json)).toList();
-    } catch (error) {
-      throw Exception('Failed to load posts: $error');
-    }
-  }
+@RestApi(baseUrl: "https://jsonplaceholder.typicode.com/")
+abstract class ApiService {
+  factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
+
+  @GET("/posts")
+  Future<List<Post>> getPosts();
 }

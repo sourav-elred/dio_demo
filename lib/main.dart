@@ -29,7 +29,7 @@ class MyHomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Provider Example'),
+        title: const Text('Dio Example'),
       ),
       body: postProvider.loading
           ? const Center(child: CircularProgressIndicator())
